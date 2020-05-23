@@ -13,16 +13,42 @@
 </head>
 <body>
 <!---Vue實例的掛載點 -->
-<div id ='app'>
+<div class="container-fluid ml-2" id="app">
 </div>
 
 <template id ='ui'>
- <div>
-   <ul>
-  <li v-for="section in sections">
-   {{section}}
-  </li>
-  </ul>
+ <div class="ml-2">
+    <div class="alert alert-info" role="alert">
+      <h5 class="text-center">新聞閱讀 - 依類別進行篩選</h5>
+        <div class="row">
+        <div class="col-6">
+          <form>
+            <div class="form-group">
+                <select class="form-control" v-model='section' id="exampleFormControlSelect1">
+                  <option v-for="section in sections">{{section}}</option>
+                </select>
+              </div>
+           </form>   
+        </div>
+        <div class="col-6">
+          <button type="button" class="btn btn-success" @click="getPostsByCategory(section)">篩選</button>
+        </div>
+
+        </div>
+      </div>
+      <div class="row" v-for="posts in results">
+        <div class="col-3" v-for="post in posts">
+            <div class="card">
+                <div class="card-header">
+                  {{post.title}}
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    {{post.abstract}}</p>
+                </div>
+        </div>
+      </div>
+    </div>
  </div>
 </template>
 
@@ -70,7 +96,6 @@
 ]
 const SECTIONS_TW = "食品, 運動, 科技"
 
-  ]
   new Vue({
        el: '#app',
        data:{
@@ -83,8 +108,20 @@ const SECTIONS_TW = "食品, 運動, 科技"
        template: '#ui',
        created(){
           this.getPostsByCategory(this.section)
-       }       
-  })
+       },
+       methods:{
+         getPostsByCategory(section){
+        let posts = this.posts
+                .slice()
+                .filter(post => post.category === this.section)
+        let i, j, chunkedArray = [], chunk = 4;
+        for(i = 0, j = 0; i<posts.length; i += chunk, j++){
+          chunkedArray[j] = posts.slice(i, i + chunk);         
+        }        
+             this.results = chunkedArray;
+         }
+       }
+  });
 </script>
 <!---Bootstrap 4 JavaScript 的CDN-->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
