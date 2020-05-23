@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app'>
+  <!-- <div class="container">
+    <div class="card mx-auto mt-2" style="width: 18rem;">
+      <img v-bind:src="news.photo" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{news.title}}</h5>
+        <p class="card-text">{{news.abstract}}</p>
+      </div>
+    </div>
+
+  </div> -->
+</div>
+<template id='ul'> 
+<div>
+  <div class="container">
+    <div class="card mx-auto mt-2" style="width: 18rem;">
+      <img v-bind:src="news.photo" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{news.title}}</h5>
+        <p class="card-text">{{news.abstract}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  new Vue({
+       el: '#app',
+       data:{
+          news:{
+             title:'物件的使用',
+             abstract:'他感自火我高顯年，使意畫爸節弟收有們治朋天效要太，質小的質，是我發部望要他數期這價性，小家對如人靈格模？活類先上苦一西民長力習張過個一中的；文輪自太在專可馬了向門片資前須國不人排分好離了張品時物而以。',
+             photo:'http://picsum.photos/200/100/?random'
+
+          }
+       },
+       template:'#ul'     
+  })
+</script>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

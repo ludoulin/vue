@@ -1,0 +1,22 @@
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app'>
+{{message}}
+<p>{{numbers.map(x=>x*2)}}</p>
+</div>
+
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  var numbers = [1, 4 , 9, 16]
+  new Vue({
+       el: '#app',
+       data:{
+           message:'Hello World',
+           numbers:numbers 
+       }
+  })
+</script>
+</body>

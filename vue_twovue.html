@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app'>
+{{message}}
+</div>
+<div id ='content'>
+{{content}}
+</div>
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  new Vue({
+       el: '#app',
+       data:{
+
+        message:'Hello World'
+
+       } 
+  })
+
+  new Vue({
+       el: '#content',
+       data:{
+
+        content:'歡迎來到Vue.js'
+
+       } 
+  })
+</script>
+</body>
+</html>

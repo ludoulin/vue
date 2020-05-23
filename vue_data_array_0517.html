@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app'>
+</div>
+
+<template id ='ui'>
+ <div>
+   <ul>
+  <li v-for="section in sections">
+   {{section}}
+  </li>
+  </ul>
+ </div>
+</template>
+
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  const posts =[
+ { 
+   "title": "watchOS 5.1.1 更新",
+   "abstract": "隨著 ios 12.1 一同登場的watchOS 5.1,....",
+   "category": "科技"
+ },
+ { 
+   "title": "Samsung 展示摺疊螢幕手機",
+   "abstract": "Samsung 即將在本周...",
+   "category": "科技"
+ },
+ { 
+   "title": "你用大腿跑步還是小腿?",
+   "abstract": "慢跑是提升「心肺功能」最簡單,....",
+   "category": "運動"
+ },
+ { 
+   "title": "「三杯咖啡」養生",
+   "abstract": "「三十年前，我讀博士班時，...",
+   "category": "食品"
+ },
+ { 
+   "title": "鍛鍊背部肌力、舒緩下背痛",
+   "abstract": "坐了一整天,...",
+   "category": "運動"
+ },
+ { 
+   "title": "Motorola One 將於美國發售",
+   "abstract": "Motorola 再戰智能電話市場",
+   "category": "科技"
+ },
+ { 
+   "title": "Intel 48 核 Xeon 處理器明年登場",
+   "abstract": "Intel 發表了產品線中最高產品",
+   "category": "科技"
+ }
+]
+const SECTIONS_TW = "食品, 運動, 科技"
+
+  ]
+  new Vue({
+       el: '#app',
+       data:{
+          posts,
+          results: [],
+          sections: SECTIONS_TW.split(', '),
+          section: '科技'  
+
+       },
+       template: '#ui',
+       created(){
+          this.getPostsByCategory(this.section)
+       }       
+  })
+</script>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
