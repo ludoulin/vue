@@ -76,7 +76,8 @@ const SECTIONS_TW = "食品, 運動, 科技"
              .catch(error => {console.log(error); });
        },
        computed:{
-         results:function(){
+        //傳統寫法 results: function(){.....}
+         results(){
         let posts = this.posts
                 .slice()
                 .filter(post => post.category === this.section)
