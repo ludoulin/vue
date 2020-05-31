@@ -56,21 +56,36 @@ body{
                             <div class="input-group-prepend">
                                 <span class="input-group-text">摘要</span>
                             </div>
-                              <button>123</button>
-                                <!-- <input type="text" class="form-control" placeholder="請輸入記事摘要" > -->
+                                <input type="text" class="form-control" v-model="newNote.name" placeholder="請輸入記事摘要">
                          </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">內容</span>
                             </div>
-                                <input type="text" class="form-control" placeholder="請輸入記事內容" >
+                                <input type="text" class="form-control" v-model="newNote.content" placeholder="請輸入記事內容" >
                         </div>
-                    <a href="#" class="btn btn-primary">新增</a>
+                    <button class="btn btn-primary" v-on:click="addNote">新增</button>
                 </div>
             </div>
         </div>
         <div class="col">
-
+            <h3 class="text-center">清單</h3>
+            <table class="table table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>名稱</th>
+                    <th>內容</th>
+                    <th colspan="2">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="note of notes" class="text-center"> 
+                    <td>{{ note.name }}</td>
+                    <td>{{ note.content }}</td>
+                    <td ><button type="button" class="btn btn-danger btn-sm btn-circle" v-on:click="deleteNote(note)">X</button></td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
       </div>
    </div>  
@@ -86,9 +101,51 @@ body{
   new Vue({
        el: '#app',
        data:{
+         newNote:{ //新增記事的JavaScript物件
+          name: '',
+          content: ''
 
+         },
+         notes:JSON.parse(localStorage.getItem('notes'))||[] //儲存記事物件的JavaScript
        },
-       template:'#ui'
+       template:'#ui',
+       watch: {
+         notes: {
+             handler: 'saveNotes',
+             deep: true
+         }
+       },
+       methods:{
+         addNote(){  //新增記事
+          if(this.newNote.name.trim().length == 0 || this.newNote.content.trim().length == 0){
+           alert('記事的摘要及內容都一定要填喔...')
+            return
+          }
+          const note = {
+               name: this.newNote.name,
+               content: this.newNote.content,
+               created: new Date()
+          }
+          this.notes.push(note);
+          this.newNote.content = '';
+          this.newNote.name = '';
+         
+         },
+         deleteNote(note){ //使用JavaScript的Confirm函數
+           if(confirm('確定要刪除這則記事嗎？')){
+            const ndx = this.notes.indexOf(note)
+            if(ndx !== -1){
+              this.notes.splice(ndx, 1);
+            }
+           }
+
+         },
+         saveNotes(){
+          localStorage.setItem('notes', JSON.stringify(this.notes))
+           console.log('新記事已儲存', new Date())
+
+         }
+       }
       
   })
 </script>
