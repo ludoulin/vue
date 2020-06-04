@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+   a:link,
+   a:visited{
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      height: 30px;
+      width: 30px;
+      color: black;
+      background-color: white;
+      border: 1px solid green;
+   }
+   a:hover,
+   a:active{
+      color: white;
+      background-color: green;
+   }
+</style>
+<title>Document</title>
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app'>
+</div>
+<template id="ui">
+<div>
+ <div class="container-fluid mt-2">
+   <div class="row">
+     <div class="col-md-10">電信業者認為5G、資費初期相對偏高 但終究會隨著普及調降</div>
+       <div class="col-md-2 ml-auto text-right">
+          <a href="#" v-on:click='decreasefontsize'>A-</a>
+          <a href="#" v-on:click='increasefontsize'>A+</a>
+       </div>
+   </div>
+   <div class="row">
+       <div class="col">
+           <div class="alert alert-warning w-100 mt-2" role="alert">
+              <p v-bind:style="fontStyle" class='mb-0'>
+                   即使先前中國電信主管認為5G網路服務將會以合理價格計費,藉此吸引更多人願意使用,但從先前Qualcomm方面回應,以及此次在夏威夷Snapdragon技術大會上的討論,似乎都顯示新網
+              </p>
+           </div>
+       </div>
+   </div>
+<hr />
+<div class="row">
+    <div class="col">
+      <p class="text-center">
+          {{fontsizesetting}}
+      </p>
+    </div>
+</div>
+ </div>   
+</div>
+</template>
+
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  new Vue({
+       el: '#app',
+       data:{
+         fontsizesetting:"16",
+         fontStyle:{
+            fontSize:"16px"
+            //'font-size':'16px'
+         }
+         
+       },
+       template:'#ui',
+       methods:{
+        decreasefontsize(){
+           this.fontStyle.fontSize = `${this.fontsizesetting--}px`
+           //this.fontStyle['font-size'] = `${this.fontsizesetting--}px`
+        },
+        increasefontsize(){
+            this.fontStyle.fontSize = `${this.fontsizesetting++}px`
+        }
+       }
+  })
+</script>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
