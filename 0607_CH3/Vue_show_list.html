@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+.selected{
+  background-color: rgb(110, 253, 193);
+}
+li{
+    cursor: pointer;
+}
+li:hover{
+   color: blue;
+   font-family: Microsoft JhengHei;
+   font-weight: bold;
+   text-decoration: underline;
+}
+</style>
+<title>Document</title>
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app' class="container-fluid">
+    <div class="row" style='position: relative;'>
+        <div class="card mt-2 ml-2" style="width: 16%;">
+            <div class="card-header">
+              關於醫院
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" @click='item=1' v-bind:class='{selected:item==1}'>醫院沿革</li>
+              <li class="list-group-item" @click='item=2' v-bind:class='{selected:item==2}'>願景宗旨</li>
+              <li class="list-group-item" @click='item=3' v-bind:class='{selected:item==3}'>院長的話</li>
+            </ul>
+          </div>
+          <div class="mt-2 ml-2" style="width:80%">
+          <div class="alert alert-primary" role="alert" v-show='item==1'>
+            醫院沿革
+          </div>
+          <div class="alert alert-secondary" role="alert" v-show='item==2'>
+            願景宗旨
+          </div>
+          <div class="alert alert-success" role="alert" v-show='item==3'>
+            院長的話
+          </div>
+          </div>
+      </div>
+</div>
+
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  new Vue({
+       el: '#app',
+       data:{
+         item:1
+       }
+  })
+</script>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
