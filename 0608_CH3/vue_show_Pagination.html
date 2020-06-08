@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+.selected{
+  background-color: rgb(110, 253, 193);
+}
+li{
+    cursor: pointer;
+}
+li:hover{
+   color: blue;
+   font-family: Microsoft JhengHei;
+   font-weight: bold;
+   text-decoration: underline;
+}
+</style>
+<title>Document</title>
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app' class="container">
+</div>
+<template id='ui'>
+    <div>
+        <div class="row">
+                <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          <li class="page-item"><a class="page-link" href="#" @click='itemPrevious'>Previous</a></li>
+                          <li class="page-item"><a class="page-link" href="#" @click='item=1'>1</a></li>
+                          <li class="page-item"><a class="page-link" href="#" @click='item=2'>2</a></li>
+                          <li class="page-item"><a class="page-link" href="#" @click='item=3'>3</a></li>
+                          <li class="page-item"><a class="page-link" href="#" @click='itemNext'>Next</a></li>
+                        </ul>
+                      </nav>
+              </div>
+              <div class="row">
+                    <div v-show='item==1' class="alert alert-primary" role="alert">
+                            <h2>觀念1／先別急著跑！強化肌群防受傷</h2>
+                            <p>跑步要跑得遠、跑得久、不受傷，跑步前強化身體的肌群相當重要。每跑一步膝關節、踝關節就要承受身體3倍的重量，許多人剛開始跑步才2、3個月，膝關節就疼痛不堪，
+                            大部分是下肢肌群不夠強壯或短時間之內就承受過度的跑量，產生過度疲勞所致跑步前必須先鍛鍊最基本、應付生活所需的「核心肌群」，以及跑步時需要用到的臀部、大
+                            腿、小腿肌群肌。只有這些肌群強化了，跑步時維持身體重心及跑步的姿勢才會正確，身體才不會以代償的方式讓其他部位肌群過度負荷，也能維持關節在對的姿勢下活動，較不易受傷。</p>
+                        </div>
+                    <div v-show='item==2' class="alert alert-secondary" role="alert">
+                           <h3>觀念2／跑步時姿勢帶動要對！</h3>
+                           <p>
+                                <a class="text-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                  Link with href
+                                </a>
+                              </p>
+                              <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                </div>
+                              </div>
+                           <hr />
+                           <a href='http://rocky549.blogspot.com/2015/06/blog-post_21.html'>資料來源:http://rocky549.blogspot.com/2015/06/blog-post_21.html</a>
+                        </div>
+                    <div v-show='item==3' class="alert alert-success" role="alert">
+                       <h3>觀念3／後腳跟還是前腳掌著地，取決於跑步速度</h3>
+                       <p>
+                            當臀部啟動帶動大、小腿開始往前跑，前腳落下那一刻，該腳跟落地還是腳掌落地，是困擾許多人的問題。
+                            「跑步時該腳後跟先著地還是前腳掌先著地，其實取決於跑步時重心位移的速度。」
+                            慢跑時身體重心位移較慢，且需維持較長時間的支撐，所以會先
+                            <a href='#' data-toggle="popover" title="姿勢跑法" data-content="不重要">以腳後跟著地</a>
+                            約20～30%重心比重很快移轉至足中，最後至腳尖推蹬離地，交換腳著地。重心位移速度越快，腳掌著地的比重就越往前移，甚至最快速度時只用腳尖著地，發揮踝關節推蹬的力量，使身體位移速度達到最佳狀態。
+                            一個好的跑者，腳掌著地時的比重與步幅的大小，均能靈活應用。速度慢持續更久的慢跑，建議腳掌先以後跟著地(20-30%)快速移轉至腳尖推蹬，反覆進行較長距離的跑步。當需要加速穿越或最後衝刺時，再改變腳掌著地比重位置以產生更快速度，爭取最佳成機。
+                            <a class="text-success" data-toggle="tooltip" data-placement="bottom" data-content="Vivamussagittis lacus vel augue laoreet rutrum faucibus.">
+                            Popover on bottom</a>
+                       </p>
+                        </div>
+              </div>
+              </div>
+</template>
+
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  new Vue({
+       el: '#app',
+       data:{
+         item:1
+       },
+       methods:{
+        itemPrevious(){
+         this.item--
+         if(this.item == 0){
+            this.item = 1
+         }
+        },
+        itemNext(){
+            this.item++
+         if(this.item == 4){
+            this.item = 3
+         }
+        }
+       },
+       template:'#ui'
+  })
+</script>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
