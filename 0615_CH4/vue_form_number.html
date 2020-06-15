@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+
+</style>
+<title>Document</title>
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app' class="container-fluid mt-2">
+    <form class="form-inline" v-on:submit.prevent="onSubmit">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">#1</span>
+            </div>
+            <input type="text" class="form-control" v-model.number.trim="nbr1" placeholder="請輸入第一個數字" >
+          </div>
+          <i class="fas fa-plus-circle"></i>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="inputPassword2" class="sr-only">Password</label>
+          <input type="text" class="form-control" id="inputPassword2" v-model.number.trim="nbr2" placeholder="請輸入第二個數字">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-calculator"></i></button>
+      </form>
+</div>
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!--Vue實例的程式碼-->
+<script>
+  new Vue({
+       el: '#app',
+       data:{
+         nbr1:'' ,
+         nbr2: ''
+       },
+       methods:{
+           onSubmit(){
+               console.log('typeof', typeof this.nbr1 === 'number')
+               console.log('typeof', typeof this.nbr2 === 'number')
+               let result = this.nbr1 + this.nbr2
+               alert(`計算的結果是${result}`)
+           }
+       }
+  })
+</script>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
