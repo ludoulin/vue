@@ -24,32 +24,39 @@ body{
 <div id ='app'>
 <div class="container-fluid mt-2">
    <div class="row">
-        <div class="alert alert-success w-100 text-center" role="alert">
+        <div class="col-6 alert alert-success w-100 text-center" role="alert">
                 待辦事項
                 <span class="badge badge-pill badge-primary">
-                {{todos.length}}
+               </span>
+        </div>
+        <div class="col -6 alert alert-success w-100 text-center" role="alert">
+                待辦事項
+                <span class="badge badge-pill badge-primary">
+                {{checkboxarray.length}}
                </span>
         </div>
    </div>
-<div v-for='todo in todos'>
-   <div class="row text-center">
-      <div class="col">
-            <div class="form-check">
-                    <input class="form-check-input" v-model='todo.done' type="checkbox" value="" v-bind:id="todo.id">
-                    <span v-if='todo.done'>
-                       <i class="far fa-check-circle"></i>
-                    </span>
-                    <span v-else>
-                       <i class="fas fa-tasks"></i>
-                    </span>
-                    <label class="form-check-label" v-bind:for="todo.id">
-                      {{todo.content}}
+ <div class="row text-center">
+        <div class="col">
+              <div class="form-check">
+                      <input class="form-check-input" v-model='checkboxarray' type="checkbox" value="雞" id="check2">
+                      <label class="form-check-label" for="check2">雞
+                      </label>
+                </div>
+                <div class="form-check">
+                     <input class="form-check-input" v-model='checkboxarray' type="checkbox" value="豬" id="check3">
+                     <label class="form-check-label" for="check3">豬
                     </label>
-                  </div>
-      </div>
-   </div>
- </div>
-   <hr />
+                </div>
+                <div class="form-check">
+                 <input class="form-check-input" v-model='checkboxarray' type="checkbox" value="牛" id="check4">
+                    <label class="form-check-label" for="check4">牛
+                     </label>
+                    </div>
+             {{checkboxarray}}                        
+         </div>
+    </div>
+                <hr />
    {{todos}}
 </div>
 </div>
@@ -61,23 +68,6 @@ body{
   new Vue({
        el: '#app',
        data:{
-         todos: [
-           {
-              id: '1',
-              content: '參加大數據研討會',
-              done: false
-           },
-           {
-              id: '2',
-              content: '前往好友五十大壽',
-              done: false
-           },
-           {
-              id: '3',
-              content: '擔任Vue前端講師',
-              done: true
-           }
-         ],
          checkboxarray:['雞']
        }
   })
