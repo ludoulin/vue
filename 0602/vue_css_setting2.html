@@ -32,7 +32,7 @@ body{
 <div class="row justify-content-center">
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          請選擇
+          {{currentName}}
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#" v-for='color in colors' v-on:click='selectColor(color)'>{{color.title}}</a>
@@ -56,6 +56,7 @@ body{
                textDecoration: 'underline'
            },
            currentColor:'',
+           currentName:'請選擇',
            colors:[
              {
               id:'1',
@@ -76,13 +77,14 @@ body{
        },
        template:'#ui',
        watch:{
-         currentColor(){
+         currentColor(color){
           this.colorFontStyle.color = this.currentColor
          }
        },
        methods:{
         selectColor(color){
            this.currentColor = color.name
+           this.currentName = color.title
         },
        }
   })
