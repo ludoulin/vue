@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+.undone{
+ color:red;
+ font-weight: bold;
+
+}
+</style>
+<title>Vuex練習-新增 Vuex.Store 實例的結構</title>
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id="app">
+<div class="container mt-2">
+     <div class="row">
+         <div calss="col">
+            <counter1></counter1>
+         </div>
+         <div class="col">
+            <counter2></counter2>
+         </div>
+     </div>
+   </div>  
+</div>      
+
+<!--counter Vue 元件的template 掛載點-->
+<!-- 直接複製Bootstrap的Button及Input group元件內容，僅修改顯示的內容及id，例如+-與# -->
+    <!-- 加入 Fontawesom 的 plus與minus -->
+    <template id='counter1'>
+            <div class="text-center">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-counter1">#</span>
+                    </div>
+                    <input type="text" class="form-control" :placeholder="counter" aria-label="計數器1" aria-describedby="basic-counter1">
+                </div>
+                <button type="button" class="btn btn-success" @click="increment(2)"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+            </div>
+    </template>
+   
+    <template id='counter2'>
+            <div class="text-center">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-counter2">#</span>
+                    </div>
+                    <input type="text" class="form-control" :placeholder="counter" aria-label="計數器2" aria-describedby="basic-counter2">
+                </div>
+                <button type="button" class="btn btn-success"><i class="fas fa-plus"></i></button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+            </div>
+        </template>
+
+
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!---Vue Router 的CDN-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js"></script>
+<!--Vue實例的程式碼-->
+<script>
+Vue.component('counter1',{
+  computed:{
+    counter(){
+        return this.$store.getters.counter
+    }
+  },
+  methods:{
+  increment(step){
+    this.$store.commit("increment",step)
+    }
+  },
+  template:'#counter1'
+})
+
+Vue.component('counter2',{
+    computed:{
+    counter(){
+        return this.$store.getters.counter
+    }
+  },
+  template:'#counter2'
+})
+
+const store = new Vuex.Store({
+    state: {
+        counter:0
+
+    },
+    getters: {
+        counter(state){
+            return state.counter
+        }
+    },
+    mutations: {
+        increment(state,payload){
+        state.counter+=payload
+        }
+
+    },
+    actions: {
+
+    }
+})
+// 因為是全域的Vue 元件，因此不需在 Vue實例中使用 components 屬性
+new Vue({
+  el: '#app',
+  // 這樣就讓 Vuex.Store 實例成為全域可用的情況，
+  // 也就是可以使用 this.$store
+  store
+  })
+
+</script>
+</body>
+</html>

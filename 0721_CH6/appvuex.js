@@ -35,8 +35,8 @@ var mutations = {
    item.done = !item.done;
 
  },
- DeleteTodo: (state, payload) => { //依指定的id從陣列中移除該待辦事項
-  var index = state.todos.findIndex(todo => todo.id === payload)
+ DeleteTodo:(state, payload) => { //依指定的id從陣列中移除該待辦事項
+  var index = state.todos.findIndex(todo => todo.id === payload);
   state.todos.splice(index, 1);
  }
 }
@@ -69,7 +69,7 @@ Vue.component("list",{
   template: `
   <div class="container">
     <div class="row" v-for='todo in todos' v-bind:key='todo.id' >
-       <div class="col" @click="toggleTodo(todo.id)" @dbclick="deleteTodo(todo.id)">{{todo.task}}</div>
+       <div class="col" @click="toggleTodo(todo.id)" @dblclick="deleteTodo(todo.id)">{{todo.task}}</div>
          <div class="col-3">
          <input type="checkbox" v-model="todo.done" class="form-check-input">
             <span :class='{undone:!todo.done}'>{{todo.done?'完成':'未完'}}</span>

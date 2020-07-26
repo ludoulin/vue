@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+.undone{
+ color:red;
+ font-weight: bold;
+
+
+}
+</style>
+<title>Document</title>
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div class="container">
+     <div class="card mx-auto mt-2" style="width: 24rem;">
+        <img class="card-img-top rounded" src="./569.jpg" alt="Card image cap">
+            <div class="card-body">
+              <div>
+                  <h2 class="text-center">待辦事項</h5>
+                    <div id="app">
+
+                    </div>
+              </div>
+              <small>
+                  <a href='<a href=' https://www.freepik.com/free-vector/kanban-board-illustration-for-agile-scrum-management-and-teamwork-process-methodology_3264810.htm'>Designed
+                      by Vectorpouch</a> <!-- 圖片下載位置：https://www.freepik.com/index.php?goto=74&idfoto=3264810&term=task
+                      -->
+                      <!-- 已加入下載時要求加入連結的使用規定 -->
+              </small>       
+             </div>
+        </div>
+   </div>     
+<!--counter Vue 元件的template 掛載點-->
+<template id="test">
+    <div>
+        <form @submit.prevent="addTodo">
+         <div class="input-group mb-3">
+             <div class="input-group-prepend">
+                 <span class="input-group-text" id="inputGroup-sizing-sm">
+                    事項
+                 </span>
+                   </div>
+                 <input type="text" class="from-control" v-model='task' placeholder="請輸入您的姓名"
+                     aria-label="Username" aria-describedby="inputGroup-sizing-sm" size="30px">
+                 </div>
+                 </form>
+                 <list></list>
+             </div>
+</template>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!---Vue Router 的CDN-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js"></script>
+
+<!-- We need lodash.merge so get lodash first -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuex-persist"></script>
+
+<!--Vue實例的程式碼-->
+<script src="./appvuex.js"></script>
+</body>
+</html>
