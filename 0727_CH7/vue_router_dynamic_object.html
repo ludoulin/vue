@@ -131,9 +131,12 @@ const routes = [
       path: '/home', component: Home
   },
   {
-      path: '/features/:id', 
+      path: '/features/', 
       component: Features,
-      props:true
+      props:
+      {
+         id: 1314
+      }
   },
   {
       path: '/pricing', component: Pricing
