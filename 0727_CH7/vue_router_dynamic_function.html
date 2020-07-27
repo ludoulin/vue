@@ -45,7 +45,7 @@ body{
         }
 
 </style>
-<title>Vue_Router動態路由 object Mode</title>
+<title>Vue_Router動態路由 function Mode</title>
 </head>
 <body>
 <!---Vue實例的掛載點 -->
@@ -133,9 +133,12 @@ const routes = [
   {
       path: '/features/', 
       component: Features,
-      props:
+      props:()=>
       {
-         id: 1314
+          const processed = {
+              id: 1314
+          }
+          return processed
       }
   },
   {
