@@ -1,0 +1,147 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
+ <!-- Fontawesom 的 CDN -->
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+ crossorigin="anonymous">
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+
+</style>
+
+<title>Vue_Router具名視圖</title>
+</head>
+<body>
+ <!-- Vue實例的掛載點 -->
+ <div id='app'>
+      <div class="container-fluid">
+         <div class="row">
+           <div class="col-3">
+              <ul>
+                  <li>
+                      <router-link to="/tech">資料科技叢書</router-link>
+                  </li>
+                  <li>
+                      <router-link to="/foods">健康飲食叢書</router-link>
+                  </li>
+              </ul>
+           </div>
+          <div class="col">
+              <router-view></router-view>
+              <router-view name="part1"></router-view>
+              <router-view name="part2"></router-view>
+          </div>
+      </div> 
+    </div>
+</div>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!---Vue Router 的CDN-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<!--Vue實例的程式碼-->
+<script>
+
+//定義各頁面所需的Vue元件
+const TechBooks = {
+  template: '<div>資料科技叢書</div>'
+
+}
+const FoodBooks = {
+    template: '<div>健康飲食叢書</div>'
+}
+const TechBooksListZH = {
+    template:`
+     <div>
+        <h3>繁體版</h3>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+     </div>       
+    `
+}
+const TechBooksListCN = {
+    template:`
+     <div>
+        <h3>簡體版</h3>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+     </div>       
+    `
+}
+const FoodsBooksList1 = {
+    template:`
+     <div>
+        <h3>保健養生</h3>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+     </div>       
+    `
+}
+const FoodsBooksList2 = {
+    template:`
+     <div>
+        <h3>食物療法</h3>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+     </div>       
+    `
+}
+
+//定義路徑與Vue元件的關係
+
+//建構Vue Router物件
+const router = new VueRouter({
+    mode:'history',
+    routes: [
+        {
+          path:'/tech',
+          components:{
+             default: TechBooks,
+             part1: TechBooksListZH,
+             part2: TechBooksListCN
+          }
+        },
+        {
+            path:'/foods',
+            components:{
+            default: FoodBooks,
+            part1: FoodsBooksList1,
+            part2: FoodsBooksList2
+        }
+    }
+    ]
+})
+new Vue({
+  el: '#app',
+  router
+  })
+</script>
+</body>
+</html>
