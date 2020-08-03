@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Vue實例的掛載點 -->
+    <div id='app'>
+        <article v-for="(note, idx) in notes" :key="idx">
+            <h1>{{note.name}}</h1>
+            <p>{{note.content}}</p>
+        </article>
+    </div>
+    <!-- Vue 的 CDN -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+    <!--引入firestore 的 CDN-->
+    <script src="https://unpkg.com/vue-firestore"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script> -->
+
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC02vtW4Puh2TVtRGRm3aqx14MtrqyWwAk",
+    authDomain: "vue-firebase-f6251.firebaseapp.com",
+    databaseURL: "https://vue-firebase-f6251.firebaseio.com",
+    projectId: "vue-firebase-f6251",
+    storageBucket: "vue-firebase-f6251.appspot.com",
+    messagingSenderId: "482844875795",
+    //appId: "1:482844875795:web:8f059d186f824024ceb3e6",
+    //measurementId: "G-HXRBM56BMF"
+  };
+    // Initialize Firebase
+    let app = firebase.initializeApp(firebaseConfig);
+    //firebase.analytics();
+    let db = app.firestore();
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    db.settings(settings);
+   </script>
+    <!-- Vue實例的程式碼 -->
+    <script>
+        new Vue({
+            el: '#app',
+            firestore(){
+                return{
+                    notes: db.collection('notes').orderBy('created')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
