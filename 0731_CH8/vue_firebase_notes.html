@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--Bootstrap 4 CSS 的 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--Fontawesome 的 CDN-->
+<script src="https://kit.fontawesome.com/538b9f3128.js" crossorigin="anonymous"></script>
+<!--Google Material Icons 的 CDN-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+body{
+   font-family: Microsoft JhengHei;
+}
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42875;
+}
+
+</style>
+<title>Document</title>
+
+
+</head>
+<body>
+<!---Vue實例的掛載點 -->
+<div id ='app'>
+</div>
+<template id="ui">
+<div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+          <h1 class="display-4">簡易記事本</h1>
+          <p class="lead">透過左側的新增、右側列清單及刪除功能來管理記事</p>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-4">
+      <div class="row">
+        <div class="col-4">
+             <div class="card text-center">
+                <div class="card-header">
+                   <h3>新增記事</h3>
+                </div>
+                 <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">摘要</span>
+                            </div>
+                                <input type="text" class="form-control" v-model="newNote.name" placeholder="請輸入記事摘要">
+                         </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">內容</span>
+                            </div>
+                                <input type="text" class="form-control"  v-model="newNote.content" placeholder="請輸入記事內容" >
+                        </div>
+                    <button class="btn btn-primary" v-on:click="addNote">新增</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h3 class="text-center">清單</h3>
+            <table class="table table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>名稱</th>
+                    <th>內容</th>
+                    <th colspan="2">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="note of notes" :key="note['.key']" class="text-center"> 
+                    <td>{{ note.name }}</td>
+                    <td>{{ note.content }}</td>
+                    <td ><button type="button" class="btn btn-danger btn-sm btn-circle" v-on:click="deleteNote(note['.key'])">X</button></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+   </div>  
+
+</div>
+</template>
+
+<!---Vue 的CDN-->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+<!--引入firestore 的 CDN-->
+<script src="https://unpkg.com/vue-firestore"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<!-- <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script> -->
+
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+apiKey: "AIzaSyC02vtW4Puh2TVtRGRm3aqx14MtrqyWwAk",
+authDomain: "vue-firebase-f6251.firebaseapp.com",
+databaseURL: "https://vue-firebase-f6251.firebaseio.com",
+projectId: "vue-firebase-f6251",
+storageBucket: "vue-firebase-f6251.appspot.com",
+messagingSenderId: "482844875795",
+//appId: "1:482844875795:web:8f059d186f824024ceb3e6",
+//measurementId: "G-HXRBM56BMF"
+};
+// Initialize Firebase
+let app = firebase.initializeApp(firebaseConfig);
+//firebase.analytics();
+let db = app.firestore();
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+db.settings(settings);
+</script>
+
+<!--Vue實例的程式碼-->
+<script>
+  new Vue({
+       el: '#app',
+       data:{
+          newNote:{
+              name:'',
+              content:''
+          }
+       },
+       firestore(){
+                return{
+                    notes: db.collection('notes').orderBy('created')
+                }
+            },
+       template:'#ui',
+       methods:{
+         addNote(){  //新增記事
+           db.collection('notes').add({
+              name: this.newNote.name,
+              content: this.newNote.content,
+              created: new Date()
+           }).then(ref => {
+               this.newNote.name = ''
+               this.newNote.content = ''
+               this.newNote.created = null
+           }).catch(error => {
+               console.log("新增文件時發生錯誤:" , error)
+           })
+         
+         },
+         deleteNote(key){ //使用JavaScript的Confirm函數
+           if(confirm('確定要刪除這則記事嗎？')){
+              db.collection('notes').doc(key).delete().then(() => {
+                  console.log('deleteNote function executed...')
+              }).catch((error) => {
+                   alert("移除文件時發生的錯誤:", error)
+              })
+           }
+
+         }
+       }
+      
+  })
+</script>
+<!---Bootstrap 4 JavaScript 的CDN-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
